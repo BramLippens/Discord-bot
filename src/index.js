@@ -14,14 +14,13 @@ client.on("ready", (c) => {
   console.log(`Logged in as ${c.user.tag}!`);
 });
 
-client.on("messageCreate", (message) => {
-  if (message.author.bot) {
+client.on("interactionCreate", (interaction) => {
+  if (!interaction.isChatInputCommand()) {
     return;
   }
 
-  switch (message.content) {
-    case "hello":
-      message.reply("Bite me!");
+  if (interaction.commandName === "ping") {
+    interaction.reply("pong");
   }
 });
 
